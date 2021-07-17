@@ -1,0 +1,20 @@
+.head{
+    background: blue;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.img{
+    background-image: url("img/computer.jpg");
+    width: 100%;
+}
+
+.error{
+    background: red;
+    text-align: center;
+    font-size: 30px;
+    color: orange;
+    margin-top: 5px;
+}
