@@ -77,6 +77,8 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
-        return redirect('/Admin.Dashboard');
+        return redirect('Users.dashboard');
+
+          
     }
 }
