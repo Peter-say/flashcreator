@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Middleware\AdminMiddleware;
 
 class LoginController extends Controller
 {
@@ -38,4 +39,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         return redirect('/');
     }
+
+    protected function redirectTo()
+ {
+  if (Auth::user()->role == 'Admin')
+  {
+    return  view('Admin.Dashboard.index');// admin dashboard path
+  } else {
+    return view('users.dashboard'); // users dashboard path
+  }
+}
 }
