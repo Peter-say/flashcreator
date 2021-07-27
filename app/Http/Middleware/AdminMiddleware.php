@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Http\Middleware\Admin;
 
 class AdminMiddleware
 {
@@ -17,9 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        $user = $request->user();
 
-        if(Auth::user()->user_type == 'Admin'){
+        if($user->role == 'Admin'){
             return $next($request);
           } else {
             return redirect('/');

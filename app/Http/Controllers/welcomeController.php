@@ -10,4 +10,6 @@ class welcomeController extends Controller
     {
         return view('web.welcome.index');
     }
+
+    
 }
