@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="login">
+                    <form method="POST" action="">
                         @csrf
 
                         <div class="form-group row">
@@ -54,7 +54,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('login') }}
+                                    {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))

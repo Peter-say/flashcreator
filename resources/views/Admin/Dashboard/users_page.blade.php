@@ -26,7 +26,7 @@
                  </thead>
                  <tbody>
                      <tr>
-                         @foreach($users as $user)
+                       
                          
                          <td class="text-center">1</td>
                          <td class="text-primary"></td>
@@ -35,7 +35,7 @@
                          <td>5 min ago</td>
                          <td>080999999999</td>
                          <td></td>
-                        @endforeach
+                      
                      </tr>
                     
                  </tbody>

@@ -24,10 +24,10 @@
             </div>
             <div class="form-group purple-border">
             <label for="name">some text</label>
-            <textarea class="form-control" id="name" rows="10"></textarea>
+            <textarea class="form-control" name="body" id="body" rows="10"></textarea>
          </div>
             <div class="error">
-            @error('name')
+            @error('body')
            <span>{{ $message }}</span>
              @enderror
             </div>

@@ -4,10 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\Admin\DashboardController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\Auth\Users;
+use App\Http\Controllers\Auth\Users\BlogController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -38,12 +37,14 @@ Route::prefix("admin")->as("admin.")->namespace("Admin")->middleware(["verified"
 
 
 
-Route::get('/dashboard', [App\Http\Controllers\Auth\Users\UsersController::class, 'users'])->name('dashboard')->middleware('auth');
-Route::get('/dashboard/post-page', [App\Http\Controllers\Auth\Users\UsersController::class, 'postpage'])->name('dashboard.post-page');
-Route::post('/dashboard/post-page', [App\Http\Controllers\Auth\Users\UsersController::class, 'store']);
+Route::get('/home', [App\Http\Controllers\Auth\Users\BlogController::class, 'users'])->name('home')->middleware('auth');
+Route::get('/post-page', [App\Http\Controllers\Auth\Users\BlogController::class, 'postpage'])->name('post-page')->middleware('auth');
+Route::post('/post-page', [App\Http\Controllers\Auth\Users\BlogController::class, 'store']);
+Route::post('/comment/{Blog}/store', [App\Http\Controllers\CommentController::class , 'store'])->name('comment.add');
 
 
 
-// Route::get('/TASKS/task', [App\Http\Controllers\taskController::class, 'index'])->name('TASKS/task');
-// Route::post('/TASKS/task', [App\Http\Controllers\taskController::class, 'store']);
+
+Route::get('/TASKS/task', [App\Http\Controllers\taskController::class, 'index'])->name('TASKS/task');
+Route::post('/TASKS/task', [App\Http\Controllers\taskController::class, 'store']);
 

@@ -16,6 +16,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ url('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('css/fontawesome.min.css') }}" rel="stylesheet" type="text/css" />
@@ -39,10 +40,26 @@
 
     <!-- end dashboard -->
 
+
+    <style>
+    .head {
+        background: blue;
+        color: white;
+        text-align: center;
+        margin-top: 6px;
+        font-size: 30px;
+    }
+
+    .side {
+        height: 50vh;
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed mb-5" >
+    <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed mb-5">
         <!-- Brand -->
         <a class="navbar-brand mr-5 ml-5" href="#">flashCreator</a><br>
 
@@ -96,12 +113,12 @@
             @endif
 
             @else
-            <form id="logout-form" action="{{ route('logout') }}" method="POST"><button ml-2
-                    class="btn-success  btn btn-block rounded">
-                    Logout</button>
-                @csrf
-            </form>
+            <a id="logout-form" action="{{ route('logout') }}" method="POST"><button 
+                    class="btn-success  btn btn-block rounded mr-3">
+                    Logout</button></a>
 
+
+            <a href="{{route('home')}}"><button class=" btn-success  btn btn-block rounded ml-3">Dashboard</button></a>
             @endguest
         </div>
     </nav>
