@@ -40,24 +40,23 @@
 
     <!-- end dashboard -->
 
-
     <style>
-    .head {
-        background: blue;
-        color: white;
-        text-align: center;
-        margin-top: 6px;
-        font-size: 30px;
-    }
+        .head {
+            background: blue;
+            color: white;
+            text-align: center;
+            margin-top: 6px;
+            font-size: 30px;
+        }
 
-    .side {
-        height: 50vh;
-        border: 1px solid gray;
-        border-radius: 10px;
-    }
+        .side {
+            height: 50vh;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
     </style>
-</head>
 
+  
 <body>
     <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed mb-5">
         <!-- Brand -->
@@ -103,8 +102,7 @@
 
             @guest
             @if (Route::has('login'))
-            <a href="{{route('login')}}" class="mr-3"><button
-                    class="btn-success  btn btn-block rounded">Login</button></a>
+            <a href="{{route('login')}}" class="mr-3"><button class="btn-success  btn btn-block rounded">Login</button></a>
             @endif
 
 
@@ -113,11 +111,22 @@
             @endif
 
             @else
-            <a id="logout-form" action="{{ route('logout') }}" method="POST"><button 
-                    class="btn-success  btn btn-block rounded mr-3">
-                    Logout</button></a>
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                </a>
 
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
 
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </li>
             <a href="{{route('home')}}"><button class=" btn-success  btn btn-block rounded ml-3">Dashboard</button></a>
             @endguest
         </div>
@@ -139,14 +148,14 @@
     <script src="assets/js/accordions.js"></script>
 
     <script language="text/Javascript">
-    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-    function clearField(t) { //declaring the array outside of the
-        if (!cleared[t.id]) { // function makes it static and global
-            cleared[t.id] = 1; // you could use true and false, but that's more typing
-            t.value = ''; // with more chance of typos
-            t.style.color = '#fff';
+        cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+        function clearField(t) { //declaring the array outside of the
+            if (!cleared[t.id]) { // function makes it static and global
+                cleared[t.id] = 1; // you could use true and false, but that's more typing
+                t.value = ''; // with more chance of typos
+                t.style.color = '#fff';
+            }
         }
-    }
     </script>
 
     <!-- dashboard-->
@@ -157,9 +166,9 @@
     <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script>
-    $(document).ready(function() {
-        App.init();
-    });
+        $(document).ready(function() {
+            App.init();
+        });
     </script>
     <script src="assets/js/custom.js"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->

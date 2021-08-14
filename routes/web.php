@@ -1,16 +1,18 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\Admin\DashboardController;
-use App\Http\Controllers\Auth\Users\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -32,19 +34,25 @@ Auth::routes(['verify' => true]);
 Route::prefix("admin")->as("admin.")->namespace("Admin")->middleware(["verified"])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Auth\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard/users', [App\Http\Controllers\Auth\Admin\UsersController::class, 'users'])->name('dashboard.users');
+    Route::get('/users/page', [App\Http\Controllers\Auth\Admin\UsersController::class, 'userslist'])->name('users.page');
+});
+
+
+Route::prefix('admin')->as('admin.')->group(function () {
+    Route::resource('/blog', BlogController::class);
+   Route::resource('/category', CategoryController::class);
 });
 
 
 
 
-Route::get('/home', [App\Http\Controllers\Auth\Users\BlogController::class, 'users'])->name('home')->middleware('auth');
-Route::get('/post-page', [App\Http\Controllers\Auth\Users\BlogController::class, 'postpage'])->name('post-page')->middleware('auth');
-Route::post('/post-page', [App\Http\Controllers\Auth\Users\BlogController::class, 'store']);
-Route::post('/comment/{Blog}/store', [App\Http\Controllers\CommentController::class , 'store'])->name('comment.add');
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home')->middleware('auth');
+Route::post('/comment/{Blog}/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
 
 
 
 
-Route::get('/TASKS/task', [App\Http\Controllers\taskController::class, 'index'])->name('TASKS/task');
-Route::post('/TASKS/task', [App\Http\Controllers\taskController::class, 'store']);
-
+// 

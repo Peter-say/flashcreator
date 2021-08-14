@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use App\Models\Blog;
 
 class CommentController extends Controller
 {
-    public function store(Blog $blog, Request $request)
+    public function store( Blog  $blog  , Request $request)
     {
-       
-       $blog->comments()->create([
+    
+       $blog->create([
        'user_id' =>$request->user()->id,
        ]);
 

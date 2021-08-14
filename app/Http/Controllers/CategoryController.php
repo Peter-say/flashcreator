@@ -1,30 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Middleware;
 
-
-class UsersController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * 
      */
-
-   
-
-    public function users()
+    public function index()
     {
-        $users = User::orderby("id" , "desc");
-        return view('Admin.users_page',[
-            'users' => $users   
-        ]);
+        $categories = BlogCategory::orderBy('id', 'asc')->paginate(8);
+        return view('Admin.category',  compact('categories'));
     }
 
     /**
@@ -45,7 +36,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $data = BlogCategory::create($data);
+        return back()->with('success', 'profile created successfully.');
     }
 
     /**
@@ -77,16 +72,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,  BlogCategory $id)
     {
         $data = $request->validate([
-         'name' => 'required|max:255',
-         'email' => 'required|unique|max:255',
-         'username' => 'required|unique|max:255',
-         'role' => 'required',
-         'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => 'required|string',
         ]);
-
+        BlogCategory::findorfail($id);
+        return back()->with('success', 'profile created successfully.');
     }
 
     /**
@@ -97,12 +89,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function userslist()
-
-    {
-        return view('Admin.Dashboard.users');
+        BlogCategory::findorfail($id)->delete();
+      
+        return back()->with('success', 'profile created successfully.');
     }
 }

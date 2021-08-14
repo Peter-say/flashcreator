@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "mohd-akram.vscode-html-format"
+        "mohd-akram.vscode-html-format",
+        "steoates.autoimport"
     ]
 }

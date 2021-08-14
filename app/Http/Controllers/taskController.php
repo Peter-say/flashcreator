@@ -22,7 +22,7 @@ class taskController extends Controller
         Task::create($post);   
         return back();
 
-        Task::findOrFail($id)->delete();
+        Task::findOrFail()->delete();
 
        return back();
      }

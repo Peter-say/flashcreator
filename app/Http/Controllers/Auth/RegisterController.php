@@ -82,10 +82,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
  
-        auth()->attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
         return redirect('Users.dashboard');
 
           
