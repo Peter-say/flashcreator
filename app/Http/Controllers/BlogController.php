@@ -7,7 +7,6 @@ use App\Models\BlogCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-;
 
 class BlogController extends Controller
 {
@@ -16,15 +15,13 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( User $user )
-    {     
-      
-        $user = auth()->user();
+    public function index()
+    {
         $categories = BlogCategory::paginate(10);
-        $blogs = Blog::latest()->paginate(10);
+        $blogs = Blog::paginate(20);
         return view('Admin.blog', [
-            'blogs' => $blogs, 
-             'categories' => $categories
+            'categories' => $categories,
+            'blogs' => $blogs
         ]);
     }
 
@@ -44,33 +41,31 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , User $user)
-    {  
-        $user = Auth::User();
-        $data = $this->validateData($request);
+    public function store(Request $request, User $user)
+    {
+
+
         $data['user_id'] = $user->id;
-        Blog::create($data);
-        return redirect()->back() ->success('Post added successfully!');
-    }
-
-    private function validateData(Request $request){
+        $user = auth()->user();
         $data = $request->validate([
-            'blog_category_id' => 'required|exists:blog_categories,id',
-            'name' => 'required|string',
+            'blog_categories_id' => 'numeric|exists:blog_categories,id',
+            'title' => 'required|string',
             'description' => 'required|string',
-            'image' =>  'required|image',
-
+            'image' => 'required|image',
         ]);
 
-         $user = auth()->user();
-        if($image = $request->file('image')){
-            $filename = time().'.'.$image->extension();
+        $user = Auth::User();
+        if ($image = $request->file('image')) {
+            $filename = time() . '.' . $image->extension();
             $destinationPath = public_path('/blog_images');
             $image->move($destinationPath, $filename);
             $data['image'] = $filename;
         }
 
-        return $data;
+
+
+        $blog = Blog::create($data);
+        return back()->with('success_message', 'Blog created successfully');
     }
 
     /**
@@ -115,6 +110,8 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Blog::findorfail($id)->delete();
+
+        return back()->with('success', 'Blog created successfully.');
     }
 }

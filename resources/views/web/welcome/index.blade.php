@@ -9,10 +9,11 @@
                   <!-- Post header-->
                   <header class="mb-4">
                       <!-- Post title-->
+                      @if($blogs->count())
                       @foreach($blogs as $blog)
                       <h3 class="fw-bolder mb-1">{{$blog->title}}</h3>
                       <!-- Post meta content-->
-                      <div class="text-muted fst-italic mb-2">Posted on {{ date('Y-m-d H:i:s') }} by
+                      <div class="text-muted fst-italic mb-2">Posted on {{ date('Y-m-d H:i:s') }} by 
                           <b></b>
                       </div>
                       <!-- Post categories-->
@@ -71,8 +72,12 @@
                       </div>
                   </div>
               </section>
+              @endforeach
+              @else
+              <div class="">No Data Yet</div>
+              @endif
           </div>
-          @endforeach
+         
           <!-- Side widgets-->
           <div class="col-lg-4">
               <!-- Search widget-->

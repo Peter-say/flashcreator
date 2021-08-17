@@ -1,7 +1,7 @@
 @extends('Admin.layout.app')
 
 @section('content-2')
-
+@include('Admin.notifications.flash-messages')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">

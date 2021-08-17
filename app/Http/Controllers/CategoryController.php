@@ -14,8 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = BlogCategory::orderBy('id', 'asc')->paginate(8);
-        return view('Admin.category',  compact('categories'));
+        
+        $categories = BlogCategory::paginate(10);
+        return view('Admin.category', [
+            'categories' =>$categories,
+        ]);
     }
 
     /**
@@ -36,11 +39,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+       
         $data = $request->validate([
             'name' => 'required|string',
         ]);
-        $data = BlogCategory::create($data);
-        return back()->with('success', 'profile created successfully.');
+         BlogCategory::create($data);
+        return back()->with('success_message', 'Category created successfully.');
     }
 
     /**
@@ -78,7 +82,7 @@ class CategoryController extends Controller
             'name' => 'required|string',
         ]);
         BlogCategory::findorfail($id);
-        return back()->with('success', 'profile created successfully.');
+        return back()->with('success_message', 'Category created successfully.');
     }
 
     /**
@@ -91,6 +95,6 @@ class CategoryController extends Controller
     {
         BlogCategory::findorfail($id)->delete();
       
-        return back()->with('success', 'profile created successfully.');
+        return back()->with('success', 'Category created successfully.');
     }
 }

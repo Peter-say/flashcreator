@@ -9,13 +9,14 @@ use App\Models\BlogCategory;
 class welcomeController extends Controller
 {
     public function index()
-    {    
-        $blogs = Blog::latest();
+    {  
         $categories = BlogCategory::find(1);
-        return view('web.welcome.index', [
-            'categories'=> $categories ,
-              'blogs' => $blogs,
-        ]);
-    }
+        $blogs = Blog::paginate(2);
+       
+        return view('web.welcome.index' , [
+            'categories' => $categories,
+             'blogs' => $blogs       
+            ]);
+        }   
 
 }
