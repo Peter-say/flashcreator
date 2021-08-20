@@ -54,6 +54,28 @@
             border: 1px solid gray;
             border-radius: 10px;
         }
+
+        #comment_reply , input{
+        border-radius: 20px;
+        width: 60%;
+        outline: blue;
+        border:3px solid blue;
+        padding: 10px;
+        }
+
+        #comment_reply , input{
+        display: none;
+        }
+
+        #reply , p{
+        cursor: pointer;
+        font-size: 20px;
+        color: #234876;
+        }
+
+        #submit_reply{
+            display: none;
+        }
     </style>
 
   
@@ -135,7 +157,25 @@
 
     @yield('content')
 
+   <script>
+        var input = document.getElementById('comment_reply');
+        var reply = document.getElementById('reply');
+        var submit_reply = document.getElementById('submit_reply');
 
+        reply.addEventListener('click', function(){
+            input.style.display = "block";
+            reply.style.display = "none";
+            submit_reply.style.display = "block";
+        });
+
+        submit_reply.addEventListener('click', function(){
+            input.style.display = "none";
+            reply.style.display = "block";
+            submit_reply.style.display = "none";
+
+           
+        });
+   </script>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -156,6 +196,8 @@
                 t.style.color = '#fff';
             }
         }
+
+      
     </script>
 
     <!-- dashboard-->

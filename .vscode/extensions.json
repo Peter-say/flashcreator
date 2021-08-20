@@ -1,6 +1,19 @@
 {
     "recommendations": [
         "mohd-akram.vscode-html-format",
-        "steoates.autoimport"
+        "steoates.autoimport",
+        "rafa-acioly.laravel-helpers",
+        "codingyu.laravel-goto-view",
+        "bmewburn.vscode-intelephense-client",
+        "foxundermoon.shell-format",
+        "stef-k.laravel-goto-controller",
+        "ms-vsliveshare.vsliveshare",
+        "lourenci.go-to-spec",
+        "gruntfuggly.format-modified",
+        "rifi2k.format-html-in-php",
+        "thejltres.fomantic-ui-snippets",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-complete-tag",
+        "formulahendry.auto-close-tag"
     ]
 }

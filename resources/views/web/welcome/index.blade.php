@@ -13,7 +13,7 @@
                       @foreach($blogs as $blog)
                       <h3 class="fw-bolder mb-1">{{$blog->title}}</h3>
                       <!-- Post meta content-->
-                      <div class="text-muted fst-italic mb-2">Posted on {{ date('Y-m-d H:i:s') }} by 
+                      <div class="text-muted fst-italic mb-2">Posted on {{ date('Y-m-d H:i:s') }} by
                           <b></b>
                       </div>
                       <!-- Post categories-->
@@ -22,7 +22,7 @@
                   </header>
 
                   <section class="mb-5">
-                      <p>{{$blog->body}}</p>
+                      <p>{{$blog->description}}</p>
                   </section>
               </article>
               <!-- Comments section-->
@@ -30,46 +30,33 @@
                   <div class="card bg-light">
                       <div class="card-body">
                           <!-- Comment form-->
-                          <form action="" method="post">
+                          <form action="{{route('comment.store')}}" method="POST">
                               @csrf
-                              <textarea name="body" class="form-control @error('body') is-invalid @enderror" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+                              <textarea name="comment_body" class="form-control @error('body') is-invalid @enderror" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
                               <button type="submit" class="btn btn-success mt-2 mb-2">Post</button>
                           </form>
-                          <!-- Comment with nested comments-->
-                          <div class="d-flex mb-4">
-                              <!-- Parent comment-->
-                              <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                              <div class="ms-3">
-                                  <div class="fw-bold">Commenter Name</div>
-                                  <p></p>
-                                  <!-- Child comment 1-->
-                                  <div class="d-flex mt-4">
-                                      <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                                      <div class="ms-3">
-                                          <div class="fw-bold">Commenter Name</div>
 
-                                      </div>
-                                  </div>
-                                  <!-- Child comment 2-->
-                                  <div class="d-flex mt-4">
-                                      <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                                      <div class="ms-3">
-                                          <div class="fw-bold">Commenter Name</div>
-                                          When you put money directly to a problem, it makes a good headline.
-                                      </div>
-                                  </div>
-                              </div>
-                          </div> 
+                          @foreach($comments as $comment)
+
                           <!-- Single comment-->
                           <div class="d-flex">
                               <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
                               <div class="ms-3">
-                                  <div class="fw-bold">Commenter Name</div>
-                                  When I look at the universe and all the ways the universe wants to kill us, I find it
-                                  hard to reconcile that with statements of beneficence.
+                                  <p class="fw-bold">{{$comment->comment_body}}</p>
+                                 
                               </div>
                           </div>
-                      </div>
+
+                          @endforeach
+                          <form action="" method="post">
+                             
+                                  <input type="text" name="comment_reply" id="comment_reply">
+                              
+                              <p id="reply">reply</p>
+                              <button  id="submit_reply" type="submit" class="btn btn-sm btn-success mt-2 mb-2">Reply</button>
+                     
+                      </form>
+
                   </div>
               </section>
               @endforeach
@@ -77,7 +64,7 @@
               <div class="">No Data Yet</div>
               @endif
           </div>
-         
+
           <!-- Side widgets-->
           <div class="col-lg-4">
               <!-- Search widget-->
@@ -97,12 +84,12 @@
                       <div class="row">
                           <div class="col-sm-6">
                               <ul class="list-unstyled mb-0">
-                                 
+
                                   <li><a href="#!">{{$categories->name}}</a></li>
                                   <li><a href="#!">HTML</a></li>
                                   <li><a href="#!">Freebies</a></li>
                               </ul>
-                             
+
                           </div>
                           <div class="col-sm-6">
                               <ul class="list-unstyled mb-0">
@@ -123,6 +110,4 @@
           </div>
       </div>
   </div>
-
-  @include('web.welcome.includes.footer');
   @endsection
