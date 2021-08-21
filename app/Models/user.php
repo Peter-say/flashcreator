@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
+    
     use HasFactory;
     protected $fillable = [
         'name',
@@ -42,6 +43,6 @@ class User extends Authenticatable
 
     public function comments()
     {
-    return $this->hasMany(Comnent::class);
+    return $this->hasMany(Comment::class);
     }
 }

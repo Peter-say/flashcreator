@@ -43,6 +43,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
    Route::resource('/category', CategoryController::class);
 });
 
+Route::resource('/comment', CommentController::class);
+
 
 
 

@@ -13,11 +13,18 @@ class Blog extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(user::class);
     }
 
     public function blogcategory()
     {
-        return $this->belongsTo(Blog::class);
+        return $this->hasOne(BlogCategory::class)->withDefault(function($user , $post){
+            $user->name = "Author";
+        });
+    }
+
+    public function comments() 
+    {
+        return $this->hasMany(Comment::class);
     }
 }

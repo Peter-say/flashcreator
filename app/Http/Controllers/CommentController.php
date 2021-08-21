@@ -3,25 +3,93 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Comment ;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Comment;
+
 
 class CommentController extends Controller
 {
-    public function store( Blog  $blog  , Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-    
-       $blog->create([
-       'user_id' =>$request->user()->id,
-       ]);
+        $comments = Comment::find(1);
+    }
 
-       return back();
-        // $comment = new Comment;
-        // $comment->body = $request->get('comment_body');
-        // $comment->user()->associate($request->user());
-        // $blog = Comment::find($request->get('blog_id'));
-        // $blog->comments()->save($comment);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
-        // return back();
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+     
+        $comments = new Comment;
+        $comments->body =$request->get('comment_body');
+        $comments->user()->associate($request->user());
+        $blogs = Comment::find(1);
+        $blogs->comments()->save($comments);
+
+        return back();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
