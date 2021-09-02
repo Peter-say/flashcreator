@@ -22,7 +22,7 @@
                   </header>
 
                   <section class="mb-5">
-                      <p>{{$blog->description}}</p>
+                      {{$blog->description}}
                   </section>
               </article>
               <!-- Comments section-->
