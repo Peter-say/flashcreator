@@ -17,6 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
+
         $categories = BlogCategory::paginate(10);
         $blogs = Blog::paginate(20);
         return view('Admin.blog', [
@@ -44,7 +45,7 @@ class BlogController extends Controller
     public function store(Request $request, User $user)
     {
 
-
+     
         $data['user_id'] = $user->id;
         $user = auth()->user();
         $data = $request->validate([
