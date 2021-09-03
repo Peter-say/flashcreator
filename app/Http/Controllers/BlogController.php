@@ -17,7 +17,6 @@ class BlogController extends Controller
      */
     public function index()
     {
-
         $categories = BlogCategory::paginate(10);
         $blogs = Blog::paginate(20);
         return view('Admin.blog', [
@@ -44,18 +43,16 @@ class BlogController extends Controller
      */
     public function store(Request $request, User $user)
     {
+  
 
-     
-        $data['user_id'] = $user->id;
-        $user = auth()->user();
-        $data = $request->validate([
+        $request['user_id'] = $user->id;
+         $request->validate([
             'blog_categories_id' => 'numeric|exists:blog_categories,id',
             'title' => 'required|string',
             'description' => 'required|string',
             'image' => 'required|image',
         ]);
 
-        $user = Auth::User();
         if ($image = $request->file('image')) {
             $filename = time() . '.' . $image->extension();
             $destinationPath = public_path('/blog_images');
@@ -65,7 +62,7 @@ class BlogController extends Controller
 
 
 
-        $blog = Blog::create($data);
+        $request = Blog::create();
         return back()->with('success_message', 'Blog created successfully');
     }
 

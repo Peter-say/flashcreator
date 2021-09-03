@@ -14,13 +14,16 @@ class CreateBlogsTable extends Migration
     public function up()
     {
         Schema::create('blogs', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->constrained()->onDelete('cascade');
-            $table->foreign('blog_categories_id')->references('id')->on('blog_categories');
+            $table->increments('id');
+            $table->string('slug');
+            $table->integer('category_id')->unsigned()->nullable();
             $table->integer('blog_categories_id')->unsigned()->nullable();
             $table->string('title');
             $table->string('description');
             $table->string('image');
+            $table->unsignedBigInteger('user_id')->constrained();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('blog_categories');
             $table->timestamps();
         });
     }

@@ -1,30 +1,35 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Blog extends Model
 {
+    
     use HasFactory;
+    
+    protected $fillable = [ 'blog_category_id' , 'image', 'title' , 'description ', 'slug', 'user_id' ];
 
-    protected $fillable = ['user_id' , 'blog_category_id' , 'title' , 'description'];
-
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class );
     }
 
-    public function blogcategory()
+    public function category()
     {
-        return $this->hasOne(BlogCategory::class)->withDefault(function($user , $post){
-            $user->name = "Author";
-        });
+        return $this->hasMany(BlogCategory::class);
     }
 
-    public function comments() 
+
+    public function sluggable(): array
     {
-        return $this->hasMany(Comment::class);
+        return [
+            'slug' => 
+            [
+                'source' =>'title'
+            ]
+         ];
     }
 }

@@ -23,7 +23,7 @@
                 <div class="card m-b-30">
                     <div class="card-body">
                         <h4 class="mt-0 header-title">View Blog Data</h4>
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spapostg: 0; width: 100%;">
+                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border: 0; width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -39,11 +39,11 @@
 
                             <tbody>
                                 @foreach ($blogs as $blog )
-                                @foreach ($categories as $category )
+                                
                                 <tr>
                                     <td>{{$blog->id}}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td></td>
+                                    <td> category</td>
+                                    <td>{{$blog->user->name}}</td>
                                     <td>{{ $blog->title}}</td>
                                     <td>{{ $blog->description }}</td>
                                     <td>
@@ -127,7 +127,7 @@
 
                                
                                 @endforeach
-                                @endforeach
+                                
                                 {{ $blogs->links() }}
                             </tbody>
                         </table>
