@@ -6,7 +6,8 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class BlogController extends Controller
 {
@@ -17,7 +18,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $categories = BlogCategory::paginate(10);
+        $categories = BlogCategory::get();
         $blogs = Blog::paginate(20);
         return view('Admin.blog', [
             'categories' => $categories,
@@ -43,27 +44,28 @@ class BlogController extends Controller
      */
     public function store(Request $request, User $user)
     {
-  
 
-        $request['user_id'] = $user->id;
-         $request->validate([
-            'blog_categories_id' => 'numeric|exists:blog_categories,id',
-            'title' => 'required|string',
+        // dd($request->all());
+        $request->validate([
+            'blog_category_id' => 'string',
+            'name' => 'required|string',
             'description' => 'required|string',
-            'image' => 'required|image',
+            'image' =>  'required|image',
+
+
         ]);
 
-        if ($image = $request->file('image')) {
-            $filename = time() . '.' . $image->extension();
-            $destinationPath = public_path('/blog_images');
-            $image->move($destinationPath, $filename);
-            $data['image'] = $filename;
-        }
+        $newImageName = uniqid() . '_' . $request->title . '.' .
+            $request->image->extension();
+        $request->image->move(public_path('postImages'), $newImageName);
 
 
-
-        $request = Blog::create();
-        return back()->with('success_message', 'Blog created successfully');
+        Blog::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'image' => $newImageName,
+        ]);
+        return back()->with('success_message', ' Post added successfully!');
     }
 
     /**

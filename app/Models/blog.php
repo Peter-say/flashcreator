@@ -10,7 +10,7 @@ class Blog extends Model
     
     use HasFactory;
     
-    protected $fillable = [ 'blog_category_id' , 'image', 'title' , 'description ', 'slug', 'user_id' ];
+    protected $fillable = [  'image', 'name' , 'description ', 'slug' ];
 
     public function users()
     {
@@ -19,7 +19,7 @@ class Blog extends Model
 
     public function category()
     {
-        return $this->hasMany(BlogCategory::class);
+        return $this->belongsTo(BlogCategory::class);
     }
 
 
