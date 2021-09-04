@@ -31,8 +31,8 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name(
 
 
 Auth::routes(['verify' => true]);
-Route::prefix("admin")->as("admin.")->namespace("Admin")->middleware(["verified"])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\Auth\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+Route::prefix("Admin")->as("Admin.")->namespace("Admin")->middleware(["verified"])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\Auth\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/users', [App\Http\Controllers\Auth\Admin\UsersController::class, 'users'])->name('dashboard.users');
     Route::get('/users/page', [App\Http\Controllers\Auth\Admin\UsersController::class, 'userslist'])->name('users.page');
 });
