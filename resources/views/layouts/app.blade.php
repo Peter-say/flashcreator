@@ -82,7 +82,7 @@
 <body>
     <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed mb-5">
         <!-- Brand -->
-        <a class="navbar-brand mr-5 ml-5" href="#" > <img class="" src="logo/logo.png"  alt=""></a><br>
+        <a class="navbar-brand mr-5 ml-5" href="#" > <img class="" src="logo/logo.png" alt=""></a><br>
         
 
 
