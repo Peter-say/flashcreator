@@ -16,7 +16,12 @@ class DashboardController extends Controller
     
     public function index()
     {
-         return view('Admin.index');
+         return view('dashboards.admin');
+    }
+
+    public function profile()
+    {
+        return view('dashboards.profile');
     }
   
 

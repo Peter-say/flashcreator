@@ -47,8 +47,8 @@ class BlogController extends Controller
 
         // dd($request->all());
         $request->validate([
-            'blog_category_id' => 'string|exists:blog_categories,id',
-            'title' => 'required|string',
+            'blog_category_id' => 'string',
+            'name' => 'required|string',
             'description' => 'required|string',
             'image' =>  'required|image',
 
@@ -61,7 +61,7 @@ class BlogController extends Controller
 
 
         Blog::create([
-            'title' => $request->input('title'),
+            'name' => $request->input('name'),
             'description' => $request->input('description'),
             'image' => $newImageName,
         ]);

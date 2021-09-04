@@ -13,7 +13,7 @@
                         </span>
                     </ol>
                 </div>
-                <h5 class="page-title">Blog Lists</h5>
+                <h5 class="page-name">Blog Lists</h5>
             </div>
 
         </div>
@@ -22,7 +22,7 @@
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title">View Blog Data</h4>
+                        <h4 class="mt-0 header-name">View Blog Data</h4>
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border: 0; width: 100%;">
                             <thead>
                                 <tr>
@@ -43,7 +43,7 @@
                                     <td>{{$blog->id}}</td>
                                     <td> {{$blog->user->name}}</td>
                                     <td></td>
-                                    <td>{{ $blog->title}}</td>
+                                    <td>{{ $blog->name}}</td>
                                     <td>{{ $blog->description }}</td>
                                     <td>
                                         <!-- @if (!empty($post->image))
@@ -62,7 +62,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Edit post  </h5>
+                                                <h5 class="modal-name">Edit post  </h5>
                                                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                             </div>
                                             <div class="modal-body">
@@ -81,7 +81,7 @@
 
                                                         <div class="form-group col-md-12">
                                                             <label for="">Title</label>
-                                                            <input type="text" class="form-control" id="" value="{{ $category->title }}" name="title" placeholder="name">
+                                                            <input type="text" class="form-control" id="" value="{{ $category->name }}" name="name" placeholder="name">
                                                         </div>
 
                                                         <div class="form-group col-md-12">
@@ -111,7 +111,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-red">Are your sure you want to delete? This action can`t be revoked!</h5>
+                                                <h5 class="modal-name text-red">Are your sure you want to delete? This action can`t be revoked!</h5>
                                                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                             </div>
                                             <div class="modal-footer">
@@ -166,7 +166,7 @@
 
                             <div class="form-group col-md-12">
                                 <label for=""></label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="" name="title" placeholder="title">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="" name="name" placeholder="name">
                             </div>
 
                             <div class="form-group col-md-12">
