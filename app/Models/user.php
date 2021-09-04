@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable implements MustVerifyEmail 
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory;
     use Notifiable;
@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'username',
         'password',
-        
+
     ];
 
     /**
@@ -41,12 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function blog()
     {
-    return $this->hasMany(Blog::class);
+        return $this->hasMany(Blog::class);
     }
 
     public function comments()
     {
-    return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 }
-

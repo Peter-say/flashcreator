@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Blog Camp'</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,7 +24,7 @@
 
 
     <!-- dashboard -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="logo/logo2.png" />
     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/loader.js"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -82,7 +82,8 @@
 <body>
     <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed mb-5">
         <!-- Brand -->
-        <a class="navbar-brand mr-5 ml-5" href="#">flashCreator</a><br>
+        <a class="navbar-brand mr-5 ml-5" href="#" > <img class="" src="logo/logo.png" alt=""></a><br>
+        
 
 
         <!-- Toggler/collapsibe Button -->

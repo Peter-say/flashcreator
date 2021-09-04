@@ -43,18 +43,18 @@
                               <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
                               <div class="ms-3">
                                   <p class="fw-bold">{{$comment->comment_body}}</p>
-                                 
+
                               </div>
                           </div>
 
                           @endforeach
                           <form action="" method="post">
-                             
+
                                   <input type="text" name="comment_reply" id="comment_reply">
-                              
+
                               <p id="reply">reply</p>
                               <button  id="submit_reply" type="submit" class="btn btn-sm btn-success mt-2 mb-2">Reply</button>
-                     
+
                       </form>
 
                   </div>
@@ -85,7 +85,7 @@
                           <div class="col-sm-6">
                               <ul class="list-unstyled mb-0">
 
-                                  <li><a href="#!">{{$categories->name}}</a></li>
+                                  <li><a href="#!"></a></li>
                                   <li><a href="#!">HTML</a></li>
                                   <li><a href="#!">Freebies</a></li>
                               </ul>
