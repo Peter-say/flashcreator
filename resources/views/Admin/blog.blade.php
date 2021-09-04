@@ -39,11 +39,10 @@
 
                             <tbody>
                                 @foreach ($blogs as $blog )
-                                
                                 <tr>
                                     <td>{{$blog->id}}</td>
-                                    <td> category</td>
-                                    <td>{{$blog->user->name}}</td>
+                                    <td> {{$blog->user->name}}</td>
+                                    <td></td>
                                     <td>{{ $blog->title}}</td>
                                     <td>{{ $blog->description }}</td>
                                     <td>
@@ -155,7 +154,7 @@
                                 <select name="blog_category_id" id="blog_category_id"  class="form-control" autofocus>
                                     <option value="" disabled selected> Select One</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->name}}">{{ $category->name}}</option>
+                                        <option value="{{ $category->id}}">{{ $category->name}}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('category_id'))
@@ -172,7 +171,7 @@
 
                             <div class="form-group col-md-12">
 
-                                <textarea name="description" rows="5" cols="40" class="form-control  @error('description') is-invalid @enderror" value="">{{old('description')}}</textarea>
+                                <textarea type="text" name="description" rows="5" cols="40" class="form-control  @error('description') is-invalid @enderror" value="">{{old('description')}}</textarea>
 
                             </div>
 
