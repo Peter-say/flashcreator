@@ -103,6 +103,6 @@ class UsersController extends Controller
     public function userslist()
 
     {
-        return view('Admin.Dashboard.users');
+        return view('Admin.users_page');
     }
 }

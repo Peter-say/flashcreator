@@ -35,7 +35,7 @@ Route::prefix("admin")->as("Admin.")->namespace("Admin")->middleware(["verified"
     Route::get('/dashboard', [App\Http\Controllers\Auth\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/users', [App\Http\Controllers\Auth\Admin\UsersController::class, 'users'])->name('dashboard.users');
     Route::get('/users/page', [App\Http\Controllers\Auth\Admin\UsersController::class, 'userslist'])->name('users.page');
-    Route::get('profile' , [App\Http\Controllers\Dashboard\AdminController::class, 'profile'])->name('profile');
+    Route::get('profile' , [App\Http\Controllers\Auth\Admin\DashboardController::class, 'profile'])->name('profile');
 
 });
 

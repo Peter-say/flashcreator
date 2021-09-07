@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('contents')
     
     <!--  BEGIN NAVBAR  -->
     <div class="header-container fixed-top">
