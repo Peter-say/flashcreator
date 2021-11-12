@@ -32,29 +32,32 @@
                           <!-- Comment form-->
                           <form action="{{route('comment.store')}}" method="POST">
                               @csrf
-                              <textarea name="comment_body" class="form-control @error('body') is-invalid @enderror" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+                              <textarea name="body" class="form-control @error('body') is-invalid @enderror" rows="3"
+                               placeholder="Join the discussion and leave a comment!"></textarea>
+                               <input type="hidden" name="post_id" value="{{ $blog->id }}" />
                               <button type="submit" class="btn btn-success mt-2 mb-2">Post</button>
                           </form>
 
-                          @foreach($comments as $comment)
+                          @foreach ($comments as $comment)
 
                           <!-- Single comment-->
                           <div class="d-flex">
                               <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
                               <div class="ms-3">
-                                  <p class="fw-bold">{{$comment->comment_body}}</p>
+                                  <p class="fw-bold">{{$comment->body}}</p>
 
                               </div>
                           </div>
 
-                          @endforeach
+                        
                           <form action="" method="post">
 
                                   <input type="text" name="comment_reply" id="comment_reply">
 
                               <p id="reply">reply</p>
-                              <button  id="submit_reply" type="submit" class="btn btn-sm btn-success mt-2 mb-2">Reply</button>
-
+                              <button  id="submit_reply" type="submit" name="reply" class="btn btn-sm btn-success mt-2 mb-2">Reply</button>
+                             
+                              @endforeach
                       </form>
 
                   </div>

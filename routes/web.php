@@ -35,14 +35,17 @@ Route::prefix("admin")->as("admin.")->namespace("Admin")->middleware(["verified"
     Route::get('/dashboard', [App\Http\Controllers\Auth\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard/users', [App\Http\Controllers\Auth\Admin\UsersController::class, 'users'])->name('dashboard.users');
     Route::get('/users/page', [App\Http\Controllers\Auth\Admin\UsersController::class, 'userslist'])->name('users.page');
-    Route::get('profile' , [App\Http\Controllers\Dashboard\AdminController::class, 'profile'])->name('profile');
+    // Route::get('profile' , [App\Http\Controllers\Dashboard\AdminController::class, 'profile'])->name('profile');
 
 });
 
 
 Route::prefix('admin')->as('admin.')->group(function () {
-    Route::resource('/blog', BlogController::class);
-   Route::resource('/category', CategoryController::class);
+     Route::resource('/blog', BlogController::class);
+    Route::resource('/category', CategoryController::class);
+
+    Route::resource('/bloglist', BlogController::class);
+
 });
 
 Route::resource('/comment', CommentController::class);

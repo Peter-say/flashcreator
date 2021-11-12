@@ -81,7 +81,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
         ]);
-        BlogCategory::findorfail($id);
+       $data = BlogCategory::findOrUpdate();
         return back()->with('success_message', 'Category created successfully.');
     }
 

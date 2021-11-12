@@ -10,19 +10,22 @@ class Blog extends Model
     
     use HasFactory;
     
-    protected $fillable = [  'image', 'name' , 'description ', 'slug' ];
+    protected $fillable = ['blog_category_id',  'title' , 'body ',  'image',  'slug' ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class );
     }
 
     public function category()
     {
-        return $this->belongsTo(BlogCategory::class);
+        return $this->belongsTo(BlogCategory::class , 'blog_category_id');
     }
 
-
+    // public function comments()
+    // {
+    //     return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    // }
     public function sluggable(): array
     {
         return [

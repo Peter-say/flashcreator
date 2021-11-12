@@ -11,9 +11,10 @@ class welcomeController extends Controller
 {
     public function index()
     {  
+       
         $comments = Comment::get();
-        $categories = BlogCategory::find(1);
-        $blogs = Blog::paginate(2);
+        $categories = BlogCategory::get();
+        $blogs = Blog::paginate(20);
        
         return view('web.welcome.index' , [
             'categories' => $categories,

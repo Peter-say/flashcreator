@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -16,13 +17,17 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BlogCategory $categories)
     {
+
+        $comments = Comment::get();
         $categories = BlogCategory::get();
-        $blogs = Blog::paginate(20);
+        $blogs = Blog::latest()->paginate(20);
+       
         return view('Admin.blog', [
             'categories' => $categories,
-            'blogs' => $blogs
+            'blogs' => $blogs,
+            'comments' => $comments
         ]);
     }
 
@@ -44,12 +49,10 @@ class BlogController extends Controller
      */
     public function store(Request $request, User $user)
     {
-
-        // dd($request->all());
         $request->validate([
-            'blog_category_id' => 'string',
-            'name' => 'required|string',
-            'description' => 'required|string',
+            'blog_category_id' => 'string|exists:blog_categories,id',
+            'title' => 'required|string',
+            'body' => 'required',
             'image' =>  'required|image',
 
 
@@ -61,9 +64,10 @@ class BlogController extends Controller
 
 
         Blog::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
             'image' => $newImageName,
+            'user_id' => $user->id
         ]);
         return back()->with('success_message', ' Post added successfully!');
     }

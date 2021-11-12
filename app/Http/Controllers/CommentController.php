@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Models\Comment ;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +16,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::find(1);
+        $comments = Comment::find(1)->comments;
     }
 
     /**
@@ -38,12 +37,21 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-     
-        $comments = new Comment;
-        $comments->body =$request->get('comment_body');
-        $comments->user()->associate($request->user());
-        $blogs = Comment::find(1);
-        $blogs->comments()->save($comments);
+         $request->validate([
+            'body' => 'required|string'
+         ]);
+         
+        $comment = new Comment();
+        $blogs = Blog::find(1);
+        $blogs->comments()->save($comment);
+
+
+        // $comment = new Comment;
+        // $comment->body = $request->get('comment_body');
+        // $comment->user()->associate($request->user());
+        // $blogs = BLog::find($request->input('post_id'));
+        // $blogs->comment()->save($comment);
+
 
         return back();
     }

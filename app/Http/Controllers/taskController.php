@@ -8,7 +8,7 @@ class taskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::latest()->paginate(2);
+        $tasks = Task::latest()->paginate(20);
         return view('TASKS.task',compact('tasks'));
     }
    
