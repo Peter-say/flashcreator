@@ -2,7 +2,7 @@
 
   @section('content')
 
-  
+
   <div class="container mt-5">
       <div class="row">
           <div class="col-lg-8">
@@ -13,57 +13,25 @@
                       <!-- Post title-->
                       @if($blogs->count())
                       @foreach($blogs as $blog)
-                      <h3 class="fw-bolder mb-1">{{$blog->title}}</h3>
+                      <h3 class="fw-bolder mb-1 mt-5">{{$blog->title}}</h3>
                       <!-- Post meta content-->
                       <div class="text-muted fst-italic mb-2">Posted on {{ date('Y-m-d H:i:s') }} by
                           <b></b>
                       </div>
+
                       <!-- Post categories-->
                       <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
                       <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                   </header>
-
-                  <section class="mb-5">
+                  <div class="post-image mt-3">
+                      <img class="img-fluid" src="{{asset('postImages/' . $blog->image)}}" alt="..." />
+                  </div>
+                  <section class="mb-2">
                       {{$blog->description}}
                   </section>
+                   <a href="{{route('blog.show' , $blog->id)}}"> <button class="btn-primary btn-xl">Read More</button></a>
               </article>
-              <!-- Comments section-->
-              <section class="mb-5">
-                  <div class="card bg-light">
-                      <div class="card-body">
-                          <!-- Comment form-->
-                          <form action="{{route('comment.store')}}" method="POST">
-                              @csrf
-                              <textarea name="body" class="form-control @error('body') is-invalid @enderror" rows="3"
-                               placeholder="Join the discussion and leave a comment!"></textarea>
-                               <input type="hidden" name="post_id" value="{{ $blog->id }}" />
-                              <button type="submit" class="btn btn-success mt-2 mb-2">Post</button>
-                          </form>
-
-                          @foreach ($comments as $comment)
-
-                          <!-- Single comment-->
-                          <div class="d-flex">
-                              <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                              <div class="ms-3">
-                                  <p class="fw-bold">{{$comment->body}}</p>
-
-                              </div>
-                          </div>
-
-                        
-                          <form action="" method="post">
-
-                                  <input type="text" name="comment_reply" id="comment_reply">
-
-                              <p id="reply">reply</p>
-                              <button  id="submit_reply" type="submit" name="reply" class="btn btn-sm btn-success mt-2 mb-2">Reply</button>
-                             
-                              @endforeach
-                      </form>
-
-                  </div>
-              </section>
+             
               @endforeach
               @else
               <div class="">No Data Yet</div>

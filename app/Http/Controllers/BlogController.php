@@ -74,12 +74,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-       $post = Blog::find(1)
-       {
-           return view();
-       }
+       
     }
 
     /**

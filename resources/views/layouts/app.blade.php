@@ -41,7 +41,11 @@
     <!-- end dashboard -->
 
     <style>
-
+       
+        .post-image  img{
+            width: 100%;
+            height: 50%;
+        }
         
         .head {
             background: blue;

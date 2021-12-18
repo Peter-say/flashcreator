@@ -23,4 +23,15 @@ class welcomeController extends Controller
             ]);
         }   
 
+        public function showPost($blog)
+        {
+             $comments = Comment::get();
+             $blog = Blog::where('id' , $blog)->find(1);
+            return view('web.single-post' ,[
+                'blog' => $blog, 
+                'comments' => $comments
+            ]);
+           
+        }
+
 }

@@ -27,6 +27,7 @@ use App\Http\Controllers\CategoryController;
 
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('web.welcome.index');
+Route::get('/blog/{blog}', [App\Http\Controllers\WelcomeController::class, 'showPost'])->name('blog.show');
 
 
 
