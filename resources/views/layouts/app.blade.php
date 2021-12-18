@@ -41,12 +41,30 @@
     <!-- end dashboard -->
 
     <style>
-       
-        .post-image  img{
+        footer {
+            margin-top: 10%;
+        }
+
+        .footer ul li {
+            display: inline-block;
+            text-align: center;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+
+        .footer a:hover{
+           text-decoration: underline 2px solid red;
+        }
+
+        .copyright{
+            text-align: center;
+        }
+
+        .post-image img {
             width: 100%;
             height: 50%;
         }
-        
+
         .head {
             background: blue;
             color: white;
@@ -96,6 +114,8 @@
 
 
     @yield('content')
+
+    @include('web.welcome.includes.footer')
 
     <script>
         var input = document.getElementById('comment_reply');

@@ -50,10 +50,10 @@ class BlogController extends Controller
     public function store(Request $request, User $user)
     {
         // dd($request->all());
-      $data =  $request->validate([
+        $request->validate([
             'blog_category_id' => 'string|exists:blog_categories,id',
             'title' => 'required|string',
-            'body' => 'required|string',
+            'description' => 'required',
             'image' =>  'required|image',
 
 
@@ -64,7 +64,12 @@ class BlogController extends Controller
         $request->image->move(public_path('postImages'), $newImageName);
 
 
-        $data = Blog::create();
+        Blog::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'image' => $newImageName,
+            'user_id' => $user->id,
+        ]);
         return back()->with('success_message', ' Post added successfully!');
     }
 
@@ -74,9 +79,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-       
+        //
     }
 
     /**
