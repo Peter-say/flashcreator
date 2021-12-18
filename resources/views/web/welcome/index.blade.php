@@ -16,7 +16,7 @@
                       <h3 class="fw-bolder mb-1 mt-5">{{$blog->title}}</h3>
                       <!-- Post meta content-->
                       <div class="text-muted fst-italic mb-2">Posted on {{ date('Y-m-d H:i:s') }} by
-                          <b></b>
+                          <b>{{$blog->user->name}}</b>
                       </div>
 
                       <!-- Post categories-->
@@ -27,9 +27,9 @@
                       <img class="img-fluid" src="{{asset('postImages/' . $blog->image)}}" alt="..." />
                   </div>
                   <section class="mb-2">
-                      {{$blog->description}}
+                     <b style="line-height: 1.5rem;"> {{substr_replace($blog->description , "..." , 400)}}</b>
                   </section>
-                   <a href="{{route('blog.show' , $blog->id)}}"> <button class="btn-primary  mb-5 btn-xl">Read More</button></a>
+                   <a href="{{route('blog.show' , $blog->id)}}"> <button id="readmore" class="btn-primary  mb-5 btn-xl">Read More</button></a>
               </article>
              
               @endforeach

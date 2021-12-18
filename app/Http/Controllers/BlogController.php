@@ -68,7 +68,7 @@ class BlogController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'image' => $newImageName,
-            'user_id' => $user->id,
+            'user_id' => auth()->user()->id,
         ]);
         return back()->with('success_message', ' Post added successfully!');
     }

@@ -11,7 +11,7 @@ class welcomeController extends Controller
 {
     public function index()
     {
-
+         
         $comments = Comment::get();
         $categories = BlogCategory::get();
         $blogs = Blog::paginate(20);

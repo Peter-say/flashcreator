@@ -60,6 +60,10 @@
             text-align: center;
         }
 
+        #readmore button:hover{
+         background: red;
+        }
+
         .post-image img {
             width: 100%;
             height: 50%;
