@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->unsignedBigInteger('user_id')->contrained()->onDelete('cascade'); 
             $table->string('slug');
             $table->string('title');
-            $table->text('body');
+            $table->string('body');
             $table->string('image');
             $table->timestamps();
         });

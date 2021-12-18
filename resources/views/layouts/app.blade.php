@@ -41,6 +41,8 @@
     <!-- end dashboard -->
 
     <style>
+
+        
         .head {
             background: blue;
             color: white;
@@ -55,128 +57,61 @@
             border-radius: 10px;
         }
 
-        #comment_reply , input{
-        border-radius: 20px;
-        width: 60%;
-        outline: blue;
-        border:3px solid blue;
-        padding: 10px;
+        #comment_reply,
+        input {
+            border-radius: 20px;
+            width: 60%;
+            outline: blue;
+            border: 3px solid blue;
+            padding: 10px;
         }
 
-        #comment_reply , input{
-        display: none;
+        #comment_reply,
+        input {
+            display: none;
         }
 
-        #reply , p{
-        cursor: pointer;
-        font-size: 20px;
-        color: #234876;
+        #reply,
+        p {
+            cursor: pointer;
+            font-size: 20px;
+            color: #234876;
         }
 
-        #submit_reply{
+        #submit_reply {
             display: none;
         }
     </style>
 
-  
+
 <body>
-    <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed mb-5">
-        <!-- Brand -->
-        <a class="navbar-brand mr-5 ml-5" href="#" > <img class="" src="logo/logo.png" alt=""></a><br>
-        
+
+    @include('web.pages.header')
 
 
-        <!-- Toggler/collapsibe Button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse " id="collapsibleNavbar">
-            <ul class="navbar-nav mb-5">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-
-                <form class="form-inline" action="">
-                    <input class="form-control  w-100 0" type="text" placeholder="Search">
-                    <button class="btn btn-success mt-2 " type="submit">Search</button>
-                </form>
-
-            </ul>
-        </div>
-        <div class="d-flex justify-content-center mr-3">
-
-            @guest
-            @if (Route::has('login'))
-            <a href="{{route('login')}}" class="mr-3"><button class="btn-success  btn btn-block rounded">Login</button></a>
-            @endif
-
-
-            @if (Route::has('register'))
-            <a href="{{route('register')}}"><button class=" btn-success  btn btn-block rounded">Register</button></a>
-            @endif
-
-            @else
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-            <a href="{{route('home')}}"><button class=" btn-success  btn btn-block rounded ml-3">Dashboard</button></a>
-            @endguest
-        </div>
-    </nav>
 
 
     @yield('content')
 
-   <script>
+    <script>
         var input = document.getElementById('comment_reply');
         var reply = document.getElementById('reply');
         var submit_reply = document.getElementById('submit_reply');
 
-        reply.addEventListener('click', function(){
+        reply.addEventListener('click', function() {
             input.style.display = "block";
             reply.style.display = "none";
             submit_reply.style.display = "block";
         });
 
-        submit_reply.addEventListener('click', function(){
+        submit_reply.addEventListener('click', function() {
             input.style.display = "none";
             reply.style.display = "block";
             submit_reply.style.display = "none";
 
-           
+
         });
-   </script>
+    </script>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -197,8 +132,6 @@
                 t.style.color = '#fff';
             }
         }
-
-      
     </script>
 
     <!-- dashboard-->

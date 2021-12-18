@@ -24,7 +24,7 @@ class BlogController extends Controller
         $categories = BlogCategory::get();
         $blogs = Blog::latest()->paginate(20);
        
-        return view('Admin.blog', [
+        return view('dashboards.admin.blog.index', [
             'categories' => $categories,
             'blogs' => $blogs,
             'comments' => $comments
@@ -49,10 +49,11 @@ class BlogController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $request->validate([
+        // dd($request->all());
+      $data =  $request->validate([
             'blog_category_id' => 'string|exists:blog_categories,id',
             'title' => 'required|string',
-            'body' => 'required',
+            'body' => 'required|string',
             'image' =>  'required|image',
 
 
@@ -63,12 +64,7 @@ class BlogController extends Controller
         $request->image->move(public_path('postImages'), $newImageName);
 
 
-        Blog::create([
-            'title' => $request->input('title'),
-            'body' => $request->input('body'),
-            'image' => $newImageName,
-            'user_id' => $user->id
-        ]);
+        $data = Blog::create();
         return back()->with('success_message', ' Post added successfully!');
     }
 
@@ -80,7 +76,10 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+       $post = Blog::find(1)
+       {
+           return view();
+       }
     }
 
     /**

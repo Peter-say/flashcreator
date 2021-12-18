@@ -29,30 +29,14 @@
                 </li>
 
                 <li class="menu">
-                    <a href="dragndrop_dragula.html" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-move">
-                                <polyline points="5 9 2 12 5 15"></polyline>
-                                <polyline points="9 5 12 2 15 5"></polyline>
-                                <polyline points="15 19 12 22 9 19"></polyline>
-                                <polyline points="19 9 22 12 19 15"></polyline>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <line x1="12" y1="2" x2="12" y2="22"></line>
-                            </svg>
-                            <span>Drag and Drop</span>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="menu">
-                    <a href="map_jvector.html" aria-expanded="false" class="dropdown-toggle">
+                    <a href="{{route('admin.blog.index')}}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map">
                                 <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
                                 <line x1="8" y1="2" x2="8" y2="18"></line>
                                 <line x1="16" y1="6" x2="16" y2="22"></line>
                             </svg>
-                            <span>Maps</span>
+                            <span>Post</span>
                         </div>
                     </a>
                 </li>
